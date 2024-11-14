@@ -137,7 +137,41 @@ The database is structured to monitor system performance and consists of two tab
    The `host_usage` table links to the host_info table through the `host_id` foreign key, establishing a **one-to-many** relationship. Each host in `host_info` can have 
    multiple entries in `host_usage`, representing different snapshots of its system metrics over time.
 
+## Testing:
+   ### Testing Bash Scripts
 
+1. **Using Debug Mode**
+   - To debug the Bash scripts, use the `-x` option to display each command and its arguments as they are executed:
+     ```bash
+     bash -x ./scripts/host_usage.sh
+     ```
+## Deployment
 
+The deployment of the Linux Cluster Monitoring Agent involves setting up the `host_usage.sh` script to run automatically:
+
+1. **Configuring Execution Permissions**
+   - Use the `chmod +x` command to make `host_usage.sh` executable:
+     ```bash
+     chmod +x ./scripts/host_usage.sh
+     ```
+
+2. **Scheduling with Crontab**
+   - Schedule `host_usage.sh` to run at predefined intervals using `crontab`, automating the collection of server usage data:
+     ```bash
+     crontab -e
+     ```	
+## Improvements
+
+To enhance the Linux Cluster Monitoring Agent?s functionality and resilience, consider these improvements:
+
+1. **Automated Resource Alerts**
+   - Set up alerts to notify admins when CPU, memory, or disk usage exceeds defined thresholds, enabling proactive issue resolution.
+
+2. **Automated Backups**
+   - Schedule regular backups of the PostgreSQL database and configuration files to ensure data recovery in case of system failures.
+
+3. **Resource Cleanup Automation**
+   - Implement scripts to periodically delete outdated records and clear unused files, keeping storage usage optimized.
+ 
 
    
