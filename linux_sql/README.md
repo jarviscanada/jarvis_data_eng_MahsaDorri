@@ -97,11 +97,44 @@ The architecture of the Linux Cluster Monitoring System is modular and scalable,
 4. **Automated Scheduling (Crontab)**:
    - `Crontab` on each node ensures that the `host_usage.sh` script runs at regular intervals, allowing continuous data collection without manual intervention.
 
+## Database Modeling Overview
+The database is structured to monitor system performance and consists of two tables: `host_info` and host_usage. Each table captures different types of information:
+
+1. `host_info` **Table** :
+   **Purpose**: This table stores static, hardware-related information about each host machine. Since it records the hardware setup, it remains largely unchanged after the         initial entry.
+
+   **Columns**:
+   **id**: Unique identifier for each host (auto-incremented primary key).
+   **hostname**: Fully qualified hostname, unique for each machine.
+   **cpu_number**: Number of CPU cores in the system.
+   **cpu_architecture**: The type of CPU architecture (e.g., x86_64, ARM).
+   **cpu_model**: Name of the CPU model (e.g., Intel(R) Xeon(R) CPU @ 2.30GHz).
+   **cpu_mhz**: CPU speed in megahertz (MHz).
+   **l2_cache**: Size of the L2 cache in kilobytes (KB).
+   **total_mem**: Total memory size in kilobytes (KB).
+   **timestamp**: Date and time when this information was recorded.
+
+   This table is used to store the machine’s hardware configuration, making it possible to identify each host, compare configurations, and analyze system capacity based on         hardware specs.
 
 
+2. `host_usage` **Table** :
 
+   **Purpose**: This table captures dynamic, real-time metrics for each host. Every entry represents a snapshot of system metrics, allowing for trend analysis over time.
 
+   **Columns**:
+   **timestamp**: Records the date and time when the usage data was collected.
+   **host_id**: Foreign key referencing id in the host_info table, linking usage data to the corresponding host.
+   **memory_free**: Amount of available memory in megabytes (MB).
+   **cpu_idle**: Percentage of CPU time spent idle.
+   **cpu_kernel**: Percentage of CPU time used by kernel processes.
+   **disk_io**: Number of disk I/O operations since the last snapshot.
+   **disk_available**: Available disk space in megabytes (MB).
 
+   This table is used to store performance data over time, allowing for monitoring resource usage, identifying performance bottlenecks, and detecting potential issues based on     patterns in memory, CPU, and disk utilization.
+
+   **Relationship**:
+   The `host_usage` table links to the host_info table through the `host_id` foreign key, establishing a **one-to-many** relationship. Each host in `host_info` can have 
+   multiple entries in `host_usage`, representing different snapshots of its system metrics over time.
 
 
 
