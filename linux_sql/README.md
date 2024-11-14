@@ -45,7 +45,7 @@ Follow these steps to set up and run the Linux Cluster Monitoring Agent:
    - Add the following line to schedule the script to run every minute (modify as needed):
      ```bash
    * * * * * bash /path/to/scripts/host_usage.sh localhost 5432 host_agent postgres password
-
+    ```	
 
 ## Implementation
 
