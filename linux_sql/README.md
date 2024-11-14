@@ -25,6 +25,8 @@ Follow these steps to set up and run the Linux Cluster Monitoring Agent:
    
 2. **Create tables using ddl.sql**
    - Open and execute the `ddl.sql` file to create the necessary tables in the database.
+  
+   
    ```bash
    psql -h localhost -U postgres -d host_agent -f sql/ddl.sql
    
