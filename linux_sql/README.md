@@ -19,6 +19,7 @@ Follow these steps to set up and run the Linux Cluster Monitoring Agent:
 
 1. **Start the PostgreSQL Database**
    - Use the `psql_docker.sh` script to start a PostgreSQL instance within Docker.
+   
    ```bash
    ./scripts/psql_docker.sh start
    
