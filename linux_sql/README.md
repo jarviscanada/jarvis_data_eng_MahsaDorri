@@ -164,13 +164,7 @@ The deployment of the Linux Cluster Monitoring Agent involves setting up the `ho
 
 To enhance the Linux Cluster Monitoring Agent?s functionality and resilience, consider these improvements:
 
-1. **Automated Resource Alerts**
-   - Set up alerts to notify admins when CPU, memory, or disk usage exceeds defined thresholds, enabling proactive issue resolution.
-
-2. **Automated Backups**
-   - Schedule regular backups of the PostgreSQL database and configuration files to ensure data recovery in case of system failures.
-
-3. **Resource Cleanup Automation**
+ **Resource Cleanup Automation**
    - Implement scripts to periodically delete outdated records and clear unused files, keeping storage usage optimized.
  
 
